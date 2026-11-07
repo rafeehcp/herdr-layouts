@@ -1,0 +1,99 @@
+{
+  "id": "root",
+  "type": "column",
+  "children": [
+    {
+      "id": "hud",
+      "type": "block",
+      "content": {
+        "mod": "gta5",
+        "props": {
+          "role": "hud"
+        }
+      },
+      "size": {
+        "px": 54
+      },
+      "window_drag": true
+    },
+    {
+      "id": "main",
+      "type": "block",
+      "content": {
+        "tab": "active",
+        "pane": {
+          "header": {
+            "content": {
+              "mod": "gta5",
+              "props": {
+                "role": "mission"
+              }
+            },
+            "reveal": "always",
+            "height": 32,
+            "position": "top"
+          },
+          "background": "#f8f6f1f0",
+          "border": {
+            "width": 1,
+            "color": "#00000026"
+          },
+          "focus": {
+            "width": 2,
+            "color": "#c48a00"
+          },
+          "radius": 6,
+          "gap": 12,
+          "lone": true
+        }
+      },
+      "padding": [
+        16,
+        16
+      ],
+      "floating": [
+        {
+          "id": "radar",
+          "content": {
+            "mod": "gta5",
+            "props": {
+              "role": "radar"
+            }
+          },
+          "edge": "left",
+          "align": "end"
+        },
+        {
+          "id": "banner",
+          "content": {
+            "mod": "gta5",
+            "props": {
+              "role": "banner"
+            }
+          },
+          "edge": "top",
+          "align": "center"
+        }
+      ]
+    }
+  ],
+  "background": {
+    "image": "mods/gta5/img/wallpaper.jpg",
+    "fit": "cover"
+  },
+  "theme": "gta5",
+  "font": "JetBrains Mono",
+  "font_size": 14,
+  "ui_font": "Rajdhani",
+  "terminal_padding": [
+    10,
+    6
+  ],
+  "terminal_opacity": 0.94,
+  "titlebar": "none",
+  "traffic_lights": [
+    14,
+    20
+  ],
+  "preview": "layouts/gta5.svg"
+}

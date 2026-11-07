@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a5a48"/><stop offset=".45" stop-color="#d9c9a8"/><stop offset=".7" stop-color="#4a4030"/><stop offset="1" stop-color="#1a140c"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#sky)"/>
+  <path d="M0 150L40 60 70 120 110 40 150 110 200 30 240 100 280 50 320 120V200H0z" fill="#3a3024" opacity=".85"/>
+  <rect width="320" height="24" fill="#dcc497"/><rect y="23" width="320" height="1.5" fill="#2b1a0e"/>
+  <text x="6" y="16" font-family="Georgia,serif" font-weight="bold" font-size="11" fill="#2b1a0e">THE HERDR GAZETTE</text>
+  <rect x="122" y="6" width="34" height="12" fill="#2b1a0e"/><rect x="160" y="6" width="34" height="12" fill="none" stroke="#2b1a0e" stroke-width=".8"/>
+  <circle cx="232" cy="12" r="7" fill="#2b1a0e"/><circle cx="232" cy="12" r="2" fill="#dcc497"/>
+  <text x="262" y="16" font-family="Courier,monospace" font-size="9" fill="#2b1a0e">$42.17</text>
+  <rect x="18" y="34" width="284" height="150" fill="#efe4cb" opacity=".94" stroke="#c99a3b" stroke-width="1.5"/>
+  <rect x="18" y="34" width="284" height="11" fill="#dcc497"/><rect x="18" y="34" width="3" height="11" fill="#8e1b14"/>
+  <g fill="#2b1a0e" opacity=".6"><rect x="28" y="54" width="120" height="4"/><rect x="28" y="64" width="90" height="4"/><rect x="28" y="74" width="140" height="4"/></g>
+  <circle cx="54" cy="150" r="24" fill="#d6c094" stroke="#2b1a0e" stroke-width="3"/>
+  <rect x="210" y="70" width="70" height="86" fill="#e2cca0" stroke="#2b1a0e" stroke-width="1.5" transform="rotate(-2 245 113)"/>
+  <text x="245" y="92" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="15" fill="#2b1a0e" transform="rotate(-2 245 113)">WANTED</text>
+  <rect x="40" y="96" width="150" height="22" fill="#8e1b14" opacity=".9"/>
+  <text x="115" y="112" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#f4ead2">MISSION COMPLETE</text>
+</svg>
