@@ -23,7 +23,7 @@ Fan-made and unofficial. It contains no Rockstar art: the painting and the recor
     - An honor meter, 100px: a white bar with a red left half and an ink marker that slides. A label reads Outlaw, Shady, Neutral, Decent or Honorable.
     - Under it, money in Special Elite, kept to the cent ("$76.55").
   - **Date:** the time in Rye ("1:43 p.m."), over the date in IM Fell italic: "Saturday, the 7th of November, 1899". The year is always 1899.
-  - **Buttons:** Settings, then minimize, maximize and close.
+  - **Buttons:** Search (Herdr's picker), Settings (with a dot when an app update is ready), then minimize, maximize and close.
 - **Panes**:
   - Pane frames: paper `#efe4cbf0`, radius 3, gap 12, padding 16, a 1px `#5a3d2466` border, and a 2px blood-red border when focused.
   - Terminals: JetBrains Mono 14, in ink on paper (`themes/rdr2.json`).
@@ -67,9 +67,16 @@ Fan-made and unofficial. It contains no Rockstar art: the painting and the recor
   - It starts on entering the layout unless you turned it off, and stops on leaving.
 - **Clicks:** the same as the GTA layouts. Towns select spaces and jobs select tabs; middle-click closes a job; right-click opens Herdr's tab menu. Click a blip to focus that agent's pane. Clicking the title shows an "Extra! Extra!" note.
 
+- **Herdr's default features:** the HUD keeps what Herdr's own sidebar and tab bar do.
+  - After the masthead title: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes**. Click the lit one again to close the panel.
+  - Towns and jobs: drag one onto another to reorder, double-click to rename, middle-click to close (no confirm), right-click for Herdr's space or tab menu.
+  - The active job has a × to close it, and a zoomed job reads "· Z" after its name.
+  - It's all in `mods/rdr2/extras.js`, the same file in every layout of this repo.
+
 ## Built from
 
 - **Layout `layouts/rdr2.json`:** a root column with the `hud` block (60px, window_drag, mod `rdr2` with role `hud`), then the `main` tab block with pane header role `mission`. Floats: `cores` (role `radar`, left/end) and `banner` (top/center). `theme: "rdr2"`, `ui_font: "IM FELL English"`.
+  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` and `changes`), then `main`.
 - **Mod `mods/rdr2`:** `main.js` (roles), `hud.js`, `mission.js`, `radar.js`, `banner.js`, and `kit.js` (inks, fonts, the records list, money, honor, the phonograph).
 - **Theme `themes/rdr2.json`:** a light paper theme, `#efe4cb` with ink `#2b1a0e`.
 - **Programs:**

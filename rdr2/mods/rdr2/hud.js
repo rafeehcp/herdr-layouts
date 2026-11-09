@@ -5,6 +5,7 @@
 // partner stuck waiting goes on a WANTED poster, one lost mid-job costs honor.
 
 import { div, image } from "gpui-kit";
+import { gestures, closeTab, panelButtons, searchIcon, withUpdateDot } from "./extras.js";
 import { h_flex, v_flex } from "gpui-base";
 import { spaces, agents, run, shared, setShared, openOverlay, window as appWindow } from "herdr";
 import {
@@ -121,7 +122,7 @@ export default class Hud {
             .cursor_pointer()
             .hover((st) => st.bg("#2b1a0e14"))
             .on_mouse_down("left", stop)
-            .on_click(() => run("space.select", { id: s.id }))
+            .when(true, (el) => gestures(el, this, "space", s.id))
             .child(
               h_flex()
                 .gap(5)
@@ -173,15 +174,7 @@ export default class Hud {
             .cursor_pointer()
             .hover((st) => st.border_color(C.ink))
             .on_mouse_down("left", stop)
-            .on_click(() => run("tab.select", { id: t.id }))
-            .on_mouse_down("middle", (_e, cx) => {
-              cx.stop_propagation();
-              run("tab.close", { id: t.id, confirmed: true });
-            })
-            .on_mouse_down("right", (_e, cx) => {
-              cx.stop_propagation();
-              openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: t.id, space: s.id } } });
-            })
+            .when(true, (el) => gestures(el, this, "tab", t.id, s.id))
             .child(
               div()
                 .min_w(24)
@@ -204,7 +197,7 @@ export default class Hud {
                 .font_family(FELL)
                 .text_size(15)
                 .text_color(t.active ? C.paperHi : C.ink)
-                .child(t.named ? t.name : who?.program?.name ?? `Job ${roman(i + 1)}`),
+                .child((t.named ? t.name : who?.program?.name ?? `Job ${roman(i + 1)}`) + (t.zoomed ? " · Z" : "")),
             )
             .when(Boolean(t.status), (el) =>
               el.child(
@@ -214,7 +207,8 @@ export default class Hud {
                   .bg(col)
                   .when(t.status === "working" || t.status === "blocked", (d) => d.loop("opacity", { from: 0.2, to: 1, period: t.status === "blocked" ? 500 : 1100 })),
               ),
-            );
+            )
+            .when(t.active, (el) => el.child(closeTab(t.id, icon("close", 10))));
         }),
       )
       .child(inkButton("j-new", icon("plus", 14), () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 }), { tip: "Take on a new job (tab)", size: 26 }));
@@ -333,6 +327,7 @@ export default class Hud {
     const rule = () => div().w(1).h(40).bg("#2b1a0e55").flex_none();
     return div()
       .id("hud")
+      .on_mouse_up("left", () => { this.pressed = null; })
       .relative()
       .size_full()
       .overflow_hidden()
@@ -350,6 +345,7 @@ export default class Hud {
           .border_b(2)
           .border_color(C.ink)
           .child(this.masthead())
+      .child(panelButtons(inkButton, C.blood))
           .child(rule())
           .child(this.towns())
           .child(rule())
@@ -358,7 +354,8 @@ export default class Hud {
           .child(this.honorMeter())
           .child(rule())
           .child(this.date())
-          .child(inkButton("settings", icon("settings", 15), () => run("app.settings"), { tip: "Settings", size: 28 }))
+          .child(inkButton("search", searchIcon(15), () => run("mod.open", { name: "picker" }), { tip: "Search", size: 28 }))
+      .child(withUpdateDot(inkButton("settings", icon("settings", 15), () => run("app.settings"), { tip: "Settings", size: 28 }), C.blood))
           .when(Boolean(w?.buttons), (el) =>
             el
               .child(winBtn("w-min", "win-min", "window.minimize"))

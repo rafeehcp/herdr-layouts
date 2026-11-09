@@ -4,6 +4,7 @@
 // raises the heat.
 
 import { div, image } from "gpui-kit";
+import { gestures, closeTab, panelButtons, searchIcon, withUpdateDot } from "./extras.js";
 import { h_flex, v_flex } from "gpui-base";
 import { spaces, agents, run, shared, setShared, openOverlay, window as appWindow } from "herdr";
 import {
@@ -101,7 +102,7 @@ export default class Hud {
             .when(s.active, (el) => el.bg("#f2c94c22"))
             .hover((st) => st.bg("#ffffff22"))
             .on_mouse_down("left", stop)
-            .on_click(() => run("space.select", { id: s.id }))
+            .when(true, (el) => gestures(el, this, "space", s.id))
             .child(
               h_flex()
                 .gap(5)
@@ -154,15 +155,7 @@ export default class Hud {
             .cursor_pointer()
             .hover((st) => st.border_color(C.hot))
             .on_mouse_down("left", stop)
-            .on_click(() => run("tab.select", { id: t.id }))
-            .on_mouse_down("middle", (_e, cx) => {
-              cx.stop_propagation();
-              run("tab.close", { id: t.id, confirmed: true });
-            })
-            .on_mouse_down("right", (_e, cx) => {
-              cx.stop_propagation();
-              openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: t.id, space: s.id } } });
-            })
+            .when(true, (el) => gestures(el, this, "tab", t.id, s.id))
             .child(
               div()
                 .size(24)
@@ -184,7 +177,7 @@ export default class Hud {
                 .font_weight(700)
                 .text_size(14)
                 .text_color(t.active ? C.text : C.soft)
-                .child(t.named ? t.name : who?.program?.name ?? `Mission ${i + 1}`),
+                .child((t.named ? t.name : who?.program?.name ?? `Mission ${i + 1}`) + (t.zoomed ? " · Z" : "")),
             )
             .when(Boolean(t.status), (el) =>
               el.child(
@@ -194,7 +187,8 @@ export default class Hud {
                   .bg(col)
                   .when(t.status === "working" || t.status === "blocked", (d) => d.loop("opacity", { from: 0.2, to: 1, period: t.status === "blocked" ? 500 : 1100 })),
               ),
-            );
+            )
+            .when(t.active, (el) => el.child(closeTab(t.id, icon("close", 10))));
         }),
       )
       .child(hudButton("m-new", icon("plus", 15), () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 }), { tip: "New mission (tab)", size: 28, radius: 14 }));
@@ -327,6 +321,7 @@ export default class Hud {
     const winBtn = (id, name, cmd, hover) => hudButton(id, icon(name, 15), () => run(cmd), { size: 30, radius: 6, hover });
     return h_flex()
       .id("hud")
+      .on_mouse_up("left", () => { this.pressed = null; })
       .size_full()
       .px(8)
       .gap(8)
@@ -337,13 +332,15 @@ export default class Hud {
       .border_b(1)
       .border_color(C.line)
       .child(this.logo())
+      .child(panelButtons(hudButton, C.pink))
       .child(this.districts())
       .child(div().w(1).h(30).bg("#ffffff22").flex_none())
       .child(this.missions())
       .child(this.radioWidget())
       .child(this.wanted())
       .child(this.clock())
-      .child(hudButton("settings", icon("settings", 16), () => run("app.settings"), { tip: "Settings", size: 30 }))
+      .child(hudButton("search", searchIcon(16), () => run("mod.open", { name: "picker" }), { tip: "Search", size: 30 }))
+      .child(withUpdateDot(hudButton("settings", icon("settings", 16), () => run("app.settings"), { tip: "Settings", size: 30 }), C.pink))
       .when(Boolean(w?.buttons), (el) =>
         el
           .child(winBtn("w-min", "win-min", "window.minimize"))

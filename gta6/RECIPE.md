@@ -21,7 +21,7 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
   - **Radio:** a 42px box with a station name in Bebas, five animated EQ bars in the station color, and a status line ("Synthwave · 45%", "TUNING…", "RADIO OFF", "NO SIGNAL"). ⏮ and ⏭ change station; ▶/■ plays or stops.
   - **Wanted stars:** five stars, with cash under them (Pricedown 24px, `#7dff9a`, `$000000000`).
   - **Clock:** Pricedown 26px, with a line under it in Rajdhani, e.g. "SAT NOV 7 · LEONIDA".
-  - **Buttons:** Settings, then minimize, maximize and close where the system draws no window buttons.
+  - **Buttons:** Search (Herdr's picker), Settings (with a dot when an app update is ready), then minimize, maximize and close where the system draws no window buttons.
 - **Panes**:
   - Pane frames: background `#fff7fbf0`, radius 10, gap 12, padding 16, a 1px `#e0167f40` border, and a 2px `#e0167f` border when focused.
   - Terminals: JetBrains Mono 14 on light pink (`themes/gta6.json`), opacity 0.94, so the sunset glows through faintly.
@@ -58,9 +58,16 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
   - Click the logo for a little cash sound.
 - **Radio:** six free nightride.fm streams: Nightride, Chillsynth, Datawave, Spacesynth, Darksynth and Rekt. Scroll over the radio to change the volume in steps of 5; the stream restarts 600ms after you stop scrolling. Station, volume and on/off are kept in shared `gta6.radio`.
 
+- **Herdr's default features:** the HUD keeps what Herdr's own sidebar and tab bar do.
+  - After the logo: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes**. Click the lit one again to close the panel.
+  - Districts and missions: drag one onto another to reorder, double-click to rename, middle-click to close (no confirm), right-click for Herdr's space or tab menu.
+  - The active mission has a × to close it, and a zoomed mission reads "· Z" after its name.
+  - It's all in `mods/gta6/extras.js`, the same file in every layout of this repo.
+
 ## Built from
 
 - **Layout `layouts/gta6.json`:**
+  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` and `changes`), then `main`.
   - The root is a column: `hud` block, 56px, window_drag, mod `gta6` with `{role: "hud"}`; then the `main` tab block.
   - Pane header: mod `gta6` with `{role: "mission"}`, height 32.
   - Floats on `main`: `radar` (`{role: "radar"}`, left/end) and `banner` (`{role: "banner"}`, top/center).
@@ -71,7 +78,7 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
   - Every other panel color stays dark, so menus and popups keep the night look.
 - **Herdr API used:**
   - Data: `spaces()`, `agents()`, `panes()`, `shared`/`setShared`, `fonts()`, `window()`.
-  - Commands: `space.select`, `space.new`, `tab.select`, `tab.close`, `pane.focus`, `pane.split`, `pane.zoom`, `pane.close`, `app.settings`, `window.*`.
+  - Commands: `space.select`, `space.new`, `space.move`, `space.rename`, `space.close`, `tab.select`, `tab.move`, `tab.rename`, `tab.close`, `layout.show`, `layout.hide`, `layout.select`, `mod.open`, `pane.focus`, `pane.split`, `pane.zoom`, `pane.close`, `app.settings`, `window.*`.
   - Other: `openOverlay` (Herdr's `new-menu` and `menu`), `playSound`, `hc`.
 - **Programs:**
   - It runs `ffplay` (from FFmpeg) as a herdr-core terminal named `gta6-radio`, started with `hc run --bg --rm` and stopped with `hc kill gta6-radio`.

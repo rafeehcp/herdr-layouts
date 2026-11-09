@@ -17,7 +17,7 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
   - **Radio:** a station name, EQ bars and a status line. ⏮ and ⏭ change station, ▶/■ plays or stops, and scrolling changes the volume.
   - **Wanted stars:** five white stars, with cash under them (Pricedown, `#72c26a`).
   - **Clock:** with "SAT NOV 7 · LOS SANTOS" under it.
-  - **Buttons:** Settings, then minimize, maximize and close.
+  - **Buttons:** Search (Herdr's picker), Settings (with a dot when an app update is ready), then minimize, maximize and close.
 - **Panes**:
   - Pane frames: background `#f8f6f1f0`, radius 6, gap 12, padding 16, a 1px `#00000026` border, and a 2px `#c48a00` border when focused.
   - Terminals: JetBrains Mono 14 on warm off-white (`themes/gta5.json`).
@@ -41,9 +41,16 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
   - Click a blip to focus that agent's pane.
   - Pane headers: double-click zooms, middle-click closes.
 
+- **Herdr's default features:** the HUD keeps what Herdr's own sidebar and tab bar do.
+  - After the logo: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes**. Click the lit one again to close the panel.
+  - Districts and missions: drag one onto another to reorder, double-click to rename, middle-click to close (no confirm), right-click for Herdr's space or tab menu.
+  - The active mission has a × to close it, and a zoomed mission reads "· Z" after its name.
+  - It's all in `mods/gta5/extras.js`, the same file in every layout of this repo.
+
 ## Built from
 
 - **Layout `layouts/gta5.json`:** the same tree as GTA 6, with mod `gta5`. Roles: `hud`, `mission`, `radar`, `banner`. `theme: "gta5"`, `ui_font: "Rajdhani"`.
+  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` and `changes`), then `main`.
 - **Mod `mods/gta5`:** `main.js` (roles), `hud.js`, `mission.js`, `radar.js`, `banner.js`, and `kit.js` (palette, `SWITCH` colors, SomaFM stations, cash).
 - **Theme `themes/gta5.json`:** light terminals (`#f8f6f1`, including `colors.background`), with dark panels.
 - **Programs:** `ffplay`, run as the herdr-core terminal `gta5-radio` (`hc run --bg --rm`, `hc kill`). It reaches the network only for the SomaFM streams.

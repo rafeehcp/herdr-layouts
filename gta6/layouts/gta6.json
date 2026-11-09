@@ -17,62 +17,130 @@
       "window_drag": true
     },
     {
-      "id": "main",
-      "type": "block",
-      "content": {
-        "tab": "active",
-        "pane": {
-          "header": {
-            "content": {
-              "mod": "gta6",
-              "props": {
-                "role": "mission"
-              }
-            },
-            "reveal": "always",
-            "height": 32,
-            "position": "top"
-          },
-          "background": "#fff7fbf0",
-          "border": {
-            "width": 1,
-            "color": "#e0167f40"
-          },
-          "focus": {
-            "width": 2,
-            "color": "#e0167f"
-          },
-          "radius": 10,
-          "gap": 12,
-          "lone": true
-        }
-      },
-      "padding": [
-        16,
-        16
-      ],
-      "floating": [
+      "id": "work-body",
+      "type": "row",
+      "children": [
         {
-          "id": "radar",
-          "content": {
-            "mod": "gta6",
-            "props": {
-              "role": "radar"
-            }
+          "id": "panel",
+          "type": "column",
+          "hidden": true,
+          "size": {
+            "px": 340
           },
-          "edge": "left",
-          "align": "end"
+          "min": 260,
+          "max": 900,
+          "background": "chrome",
+          "children": [
+            {
+              "id": "panel-body",
+              "type": "stack",
+              "active": "crew",
+              "children": [
+                {
+                  "id": "crew",
+                  "type": "column",
+                  "children": [
+                    {
+                      "id": "spaces",
+                      "type": "block",
+                      "size": {
+                        "weight": 1
+                      },
+                      "min": 90,
+                      "content": {
+                        "mod": "spaces"
+                      }
+                    },
+                    {
+                      "id": "agents",
+                      "type": "block",
+                      "size": {
+                        "weight": 1
+                      },
+                      "min": 90,
+                      "content": {
+                        "mod": "agents"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "files",
+                  "type": "block",
+                  "content": {
+                    "mod": "files"
+                  }
+                },
+                {
+                  "id": "changes",
+                  "type": "block",
+                  "content": {
+                    "mod": "changes"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "banner",
+          "id": "main",
+          "type": "block",
           "content": {
-            "mod": "gta6",
-            "props": {
-              "role": "banner"
+            "tab": "active",
+            "pane": {
+              "header": {
+                "content": {
+                  "mod": "gta6",
+                  "props": {
+                    "role": "mission"
+                  }
+                },
+                "reveal": "always",
+                "height": 32,
+                "position": "top"
+              },
+              "background": "#fff7fbf0",
+              "border": {
+                "width": 1,
+                "color": "#e0167f40"
+              },
+              "focus": {
+                "width": 2,
+                "color": "#e0167f"
+              },
+              "radius": 10,
+              "gap": 12,
+              "lone": true
             }
           },
-          "edge": "top",
-          "align": "center"
+          "padding": [
+            16,
+            16
+          ],
+          "floating": [
+            {
+              "id": "radar",
+              "content": {
+                "mod": "gta6",
+                "props": {
+                  "role": "radar"
+                }
+              },
+              "edge": "left",
+              "align": "end"
+            },
+            {
+              "id": "banner",
+              "content": {
+                "mod": "gta6",
+                "props": {
+                  "role": "banner"
+                }
+              },
+              "edge": "top",
+              "align": "center"
+            }
+          ]
         }
       ]
     }
