@@ -68,14 +68,14 @@
                   "id": "files",
                   "type": "block",
                   "content": {
-                    "mod": "files"
+                    "mod": "hud-files"
                   }
                 },
                 {
                   "id": "changes",
                   "type": "block",
                   "content": {
-                    "mod": "changes"
+                    "mod": "hud-changes"
                   }
                 }
               ]
@@ -145,10 +145,6 @@
       ]
     }
   ],
-  "background": {
-    "image": "mods/gta6/img/wallpaper.jpg",
-    "fit": "cover"
-  },
   "theme": "gta6",
   "font": "JetBrains Mono",
   "font_size": 14,
@@ -163,5 +159,9 @@
     14,
     20
   ],
-  "preview": "layouts/gta6.svg"
+  "preview": "layouts/gta6.svg",
+  "background": {
+    "image": "mods/gta6/img/wallpaper.jpg",
+    "fit": "cover"
+  }
 }

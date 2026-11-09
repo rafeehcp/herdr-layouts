@@ -68,14 +68,14 @@
                   "id": "files",
                   "type": "block",
                   "content": {
-                    "mod": "files"
+                    "mod": "hud-files"
                   }
                 },
                 {
                   "id": "changes",
                   "type": "block",
                   "content": {
-                    "mod": "changes"
+                    "mod": "hud-changes"
                   }
                 }
               ]
@@ -145,10 +145,6 @@
       ]
     }
   ],
-  "background": {
-    "image": "mods/rdr2/img/wallpaper.jpg",
-    "fit": "cover"
-  },
   "theme": "rdr2",
   "font": "JetBrains Mono",
   "font_size": 14,
@@ -163,5 +159,9 @@
     14,
     20
   ],
-  "preview": "layouts/rdr2.svg"
+  "preview": "layouts/rdr2.svg",
+  "background": {
+    "image": "mods/rdr2/img/wallpaper.jpg",
+    "fit": "cover"
+  }
 }

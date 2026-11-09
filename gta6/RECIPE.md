@@ -59,7 +59,7 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
 - **Radio:** six free nightride.fm streams: Nightride, Chillsynth, Datawave, Spacesynth, Darksynth and Rekt. Scroll over the radio to change the volume in steps of 5; the stream restarts 600ms after you stop scrolling. Station, volume and on/off are kept in shared `gta6.radio`.
 
 - **Herdr's default features:** the HUD keeps what Herdr's own sidebar and tab bar do.
-  - After the logo: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes**. Click the lit one again to close the panel.
+  - After the logo: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes** (`hud-files` and `hud-changes`, see Watch out). Click the lit one again to close the panel.
   - Districts and missions: drag one onto another to reorder, double-click to rename, middle-click to close (no confirm), right-click for Herdr's space or tab menu.
   - The active mission has a × to close it, and a zoomed mission reads "· Z" after its name.
   - It's all in `mods/gta6/extras.js`, the same file in every layout of this repo.
@@ -67,7 +67,7 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
 ## Built from
 
 - **Layout `layouts/gta6.json`:**
-  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` and `changes`), then `main`.
+  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` (mod `hud-files`) and `changes` (mod `hud-changes`)), then `main`.
   - The root is a column: `hud` block, 56px, window_drag, mod `gta6` with `{role: "hud"}`; then the `main` tab block.
   - Pane header: mod `gta6` with `{role: "mission"}`, height 32.
   - Floats on `main`: `radar` (`{role: "radar"}`, left/end) and `banner` (`{role: "banner"}`, top/center).
@@ -95,6 +95,8 @@ Fan-made and unofficial. It contains no Rockstar art. The logo, banners, minimap
 - `toLocaleDateString` ignores options here, so dates are built by hand.
 - Floating blocks are framed in the theme's `background`, which is the light terminal color here. The radar and banner draw their own dark card.
 - Right-clicking a mission opens Herdr's shipped `menu` with `{tab: "tab", target: {id, space}}`.
+
+- **Files and Changes are copies.** Herdr's shipped `files` and `changes` paint the theme's `background` under its `foreground`. In the GTA themes, `background` is the light terminal color and `foreground` is the dark panels' light text, so those panels would be unreadable. `mods/hud-files` and `mods/hud-changes` are the shipped mods with one change: they paint `chrome` when those two colors are too close. Copy both folders into `mods/`. They're the same in every layout of this repo.
 
 ## Done when
 

@@ -68,7 +68,7 @@ Fan-made and unofficial. It contains no Rockstar art: the painting and the recor
 - **Clicks:** the same as the GTA layouts. Towns select spaces and jobs select tabs; middle-click closes a job; right-click opens Herdr's tab menu. Click a blip to focus that agent's pane. Clicking the title shows an "Extra! Extra!" note.
 
 - **Herdr's default features:** the HUD keeps what Herdr's own sidebar and tab bar do.
-  - After the masthead title: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes**. Click the lit one again to close the panel.
+  - After the masthead title: buttons that open a side panel on the left (340px, hidden at first): **Spaces & agents** (Herdr's `spaces` and `agents` lists, stacked: machines, worktrees, pin, peek, sort, sub-agents), **Files** and **Changes** (`hud-files` and `hud-changes`, see Watch out). Click the lit one again to close the panel.
   - Towns and jobs: drag one onto another to reorder, double-click to rename, middle-click to close (no confirm), right-click for Herdr's space or tab menu.
   - The active job has a × to close it, and a zoomed job reads "· Z" after its name.
   - It's all in `mods/rdr2/extras.js`, the same file in every layout of this repo.
@@ -76,7 +76,7 @@ Fan-made and unofficial. It contains no Rockstar art: the painting and the recor
 ## Built from
 
 - **Layout `layouts/rdr2.json`:** a root column with the `hud` block (60px, window_drag, mod `rdr2` with role `hud`), then the `main` tab block with pane header role `mission`. Floats: `cores` (role `radar`, left/end) and `banner` (top/center). `theme: "rdr2"`, `ui_font: "IM FELL English"`.
-  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` and `changes`), then `main`.
+  - Under the HUD, a `work-body` row: a hidden `panel` column (a `panel-body` stack of `crew` [`spaces` + `agents` blocks], `files` (mod `hud-files`) and `changes` (mod `hud-changes`)), then `main`.
 - **Mod `mods/rdr2`:** `main.js` (roles), `hud.js`, `mission.js`, `radar.js`, `banner.js`, and `kit.js` (inks, fonts, the records list, money, honor, the phonograph).
 - **Theme `themes/rdr2.json`:** a light paper theme, `#efe4cb` with ink `#2b1a0e`.
 - **Programs:**
@@ -95,6 +95,8 @@ Fan-made and unofficial. It contains no Rockstar art: the painting and the recor
 - `toLocaleDateString` ignores its options here, so build weekday and month names by hand.
 - ffplay must be on PATH, or in winget's Links folder on Windows.
 - The banner sits on the theme's paper background, so its text is ink.
+
+- **Files and Changes are copies.** Herdr's shipped `files` and `changes` paint the theme's `background` under its `foreground`. In the GTA themes, `background` is the light terminal color and `foreground` is the dark panels' light text, so those panels would be unreadable. `mods/hud-files` and `mods/hud-changes` are the shipped mods with one change: they paint `chrome` when those two colors are too close. Copy both folders into `mods/`. They're the same in every layout of this repo.
 
 ## Done when
 
